@@ -33,30 +33,28 @@ function displayPocemons (i) {
     let newListItem = createElement("li", "pocemon__card card p-3 border-0 mb-4");
     elPocemonList.appendChild(newListItem);
 
-
     // Create pokemon img
     let newItemImg = createElement("img", "pocemon__card-img mx-auto mt-2");
     newItemImg.setAttribute("src", pokemons[i].img)
     newItemImg.width = "200";
-    newListItem.append(newItemImg);
-
 
     // Create pokemon content
     let newCardContent = createElement("div", "pocemon__card-content card-body");
-    newListItem.append(newCardContent);
+    newListItem.append(newItemImg, newCardContent)
+
+
 
     // Pokemon name
     let elPocemonName = createElement("h4", "card-title fw-bold", pokemons[i].name);
-    newCardContent.append(elPocemonName);
-
 
     // Create infos box about pokemon
     let newAboutBox = createElement("div", "card-about bg-light p-2 rounded-3");
-    newCardContent.append(newAboutBox);
+    newCardContent.append(elPocemonName, newAboutBox)
+
+
 
     // Create loop and display infos about pokemon sizes
     let newListAbout = createElement("ul", "list-group list-unstyled")
-    newAboutBox.append(newListAbout);
 
     for (let j = 0; j < pocemonSize.length; j++) {
         let newAboutSpan = createElement("span", "fw-bold", `${sizeArray[j]}: `);
@@ -68,7 +66,7 @@ function displayPocemons (i) {
 
     // Create loop and display infos about pocemon type and weaknesses
     let newListInfo = createElement("ul", "list-unstyled");
-    newAboutBox.append(newListInfo);
+    newAboutBox.append(newListAbout, newListInfo);
 
     for (let i = 0; i < pocemonInfo.length; i++) {
       let newListInfoItem = createElement("li", "card-about-item p-2");
