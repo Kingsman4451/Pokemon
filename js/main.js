@@ -23,10 +23,10 @@ addOptionTooSelect ()
 
 
 // Display All pocemons on screen function
-function displayPocemons (i) {
+function displayPocemons (pokemon) {
     // Pokemon infos array
-    let pocemonSize = [pokemons[i].height, pokemons[i].weight];
-    let pocemonInfo = [pokemons[i].type, pokemons[i].weaknesses]
+    let pocemonSize = [pokemon.height, pokemon.weight];
+    let pocemonInfo = [pokemon.type, pokemon.weaknesses]
 
 
     // Create pokemon card
@@ -35,7 +35,7 @@ function displayPocemons (i) {
 
     // Create pokemon img
     let newItemImg = createElement("img", "pocemon__card-img mx-auto mt-2");
-    newItemImg.setAttribute("src", pokemons[i].img)
+    newItemImg.setAttribute("src", pokemon.img)
     newItemImg.width = "200";
 
     // Create pokemon content
@@ -45,7 +45,7 @@ function displayPocemons (i) {
 
 
     // Pokemon name
-    let elPocemonName = createElement("h4", "card-title fw-bold", pokemons[i].name);
+    let elPocemonName = createElement("h4", "card-title fw-bold", pokemon.name);
 
     // Create infos box about pokemon
     let newAboutBox = createElement("div", "card-about bg-light p-2 rounded-3");
@@ -85,18 +85,18 @@ function displayPocemons (i) {
 function displayAllPocemons () {
   if(elTypeSelect.value == "All") {
     // Pokemons array loop
-    for (let i = 0; i < pokemons.length; i++) {
-        displayPocemons (i);
-    }
+    pokemons.forEach(function (pokemon) {
+      displayPocemons (pokemon)
+    })
   }
 }
 displayAllPocemons ()
 
 
 // Display function pocemons' types if select value is other
-function displayPocemonTypes (i) {
-  if(pokemons[i].type.includes(elTypeSelect.value)){
-    displayPocemons(i);
+function displayPocemonTypes (pokemon) {
+  if(pokemon.type.includes(elTypeSelect.value)){
+    displayPocemons(pokemon);
   }
 }
 
@@ -107,8 +107,8 @@ elTypeSelect.addEventListener("change", function(e){
   if (elTypeSelect.value == "All") {
     displayAllPocemons ()
   } else{
-    for (let i = 0; i < pokemons.length; i++) {
-      displayPocemonTypes (i);
-    }
+    pokemons.forEach(function (pokemon) {
+      displayPocemonTypes (pokemon)
+    })
   }
 })
